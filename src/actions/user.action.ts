@@ -11,6 +11,19 @@ or at the top of a separate file to mark all exports of that file as Server Acti
 
 source: https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
 
+auth()
+The auth() helper returns the Auth object of the currently active user, as well as the redirectToSignIn() method.
+
+Only available for App Router.
+Only works on the server-side, such as in Server Components, Route Handlers, and Server Actions.
+Requires clerkMiddleware() to be configured.
+
+source: https://clerk.com/docs/references/nextjs/auth
+
+The clerkMiddleware() helper integrates Clerk authentication into your Next.js application through Middleware. clerkMiddleware() is compatible with both the App and Pages routers.
+
+source: https://clerk.com/docs/references/nextjs/clerk-middleware
+
 */
 
 "use server";
@@ -21,10 +34,11 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 export async function syncUser(){
     try {
       const { userId } = await auth();
-      console.log("UserId: ", userId);
+      //
+      // console.log("UserId: ", userId);
       
       const user = await currentUser();
-      console.log("Current User: ", user);
+      // console.log("Current User: ", user);
   
       if (!userId || !user) return;
   
@@ -56,7 +70,7 @@ export async function syncUser(){
 export async function getUserByClerkId(clerkId: string){
     return prisma.user.findUnique({
         where: {
-            clerkId: clerkId,
+            clerkId: clerkId, //Find a record where the clerkId column in the database matches the value of the variable userId.
         },
         include: {
             _count:{
@@ -71,7 +85,7 @@ export async function getUserByClerkId(clerkId: string){
 }
 
 export async function getDbUserId(){
-  const {userId:clerkId} = await auth();
+  const {userId:clerkId} = await auth();  //Destructuring... auth() returns an object... and we need userId... which is later renamed as clerkId...
 
   if(!clerkId) throw new Error("UnAuthorized");
 
