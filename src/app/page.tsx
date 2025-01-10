@@ -1,9 +1,10 @@
+//By default every component is a server component by default
 
-export default function Home() {
+export default async function Home() {
 
   return (
     <div className="m-4">
-      <h1>Home page content</h1> 
+      <h1>Home Page Content</h1>
     </div>
   );
 }
