@@ -18,7 +18,7 @@ source: https://nextjs.org/docs/app/building-your-application/data-fetching/serv
 import prisma from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
-export async function syncUser() {
+export async function syncUser(){
     try {
       const { userId } = await auth();
       console.log("UserId: ", userId);
@@ -68,4 +68,17 @@ export async function getUserByClerkId(clerkId: string){
             },
         },
     });
+}
+
+export async function getDbUserId(){
+  const {userId:clerkId} = await auth();
+
+  if(!clerkId) throw new Error("UnAuthorized");
+
+  const user = await getUserByClerkId(clerkId);
+
+  if(!user) throw new Error("User not found");
+
+  return user.id;
+
 }

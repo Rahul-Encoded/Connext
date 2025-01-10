@@ -1,7 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server';
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { getUserByClerkId, syncUser } from '@/actions/user.action';
+import { getUserByClerkId } from '@/actions/user.action';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import { Button } from './ui/button';
 import Link from "next/link";
@@ -13,7 +13,6 @@ async function Sidebar() {
   const authUser = await currentUser();
   if (!authUser) return <UnAuthenticatedSidebar />;
 
-  await syncUser(); //Ensures user data is synced before fetching
   const user = await getUserByClerkId(authUser.id);
   if (!user) return null;
 
