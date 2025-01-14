@@ -96,7 +96,7 @@ export async function getDbUserId(){
 
   const {userId:clerkId} = authResult;  //Destructuring... auth() returns an object... and we need userId... which is later renamed as clerkId...
 
-  if(!clerkId) throw new Error("UnAuthorized");
+  if(!clerkId) return null;
 
   const user = await getUserByClerkId(clerkId);
 
@@ -109,10 +109,9 @@ export async function getDbUserId(){
 export async function getRandomUsers() {
   try {
       const userId = await getDbUserId();
-      if (!userId) {
-          throw new Error("Unable to fetch current user ID");
-      }
+      if (!userId) return [];
 
+      // get 3 random users excluding ourselves and users that we already follow
       const randomUsers = await prisma.user.findMany({
           where: {
               AND: [
@@ -147,6 +146,8 @@ export async function getRandomUsers() {
 export async function toggleFollow(targetUserId: string){
   try {
     const userId = await getDbUserId();
+
+    if(!userId) return;
 
     if(userId === targetUserId) throw new Error("You cannot follow yourself");
 
