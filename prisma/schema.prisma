@@ -8,7 +8,6 @@
 //Think of Prisma as a translator between your code and your database:
 //  instead of writing complex SQL code, you write simple js/ts code and prisma translates it to your database.
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -48,7 +47,7 @@ model Post{
   authorId String?
   content String?
   image String?
-  createdAT DateTime @default(now())
+  createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   //Relations
