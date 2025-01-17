@@ -9,7 +9,6 @@
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
-  
   "dependencies": {
     "@clerk/nextjs": "^6.9.6",
     "@neondatabase/serverless": "^0.10.4",
@@ -36,7 +35,6 @@
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^7.4.4"
   },
-
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
