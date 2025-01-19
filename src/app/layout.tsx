@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Connectivity",
+  title: "Connext",
   description: "Crafted with sleepless nights fueled by Next.js",
 };
 
