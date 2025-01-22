@@ -4,7 +4,7 @@ This project showcases a modern full-stack web application built with Next.js 14
 
 🚀 Key Highlights
 
-*   **🚀 Tech Stack:** Next.js App Router, Postgres, Prisma, Clerk, TypeScript
+*   **🚀 Tech Stack:** Next.js App Router, Prisma, Clerk, TypeScript
 *   **💻 Server-Side Power:** Utilizes Server Components, Layouts, Route Handlers, and Server Actions for optimal performance and data handling.
 *   **🔥 Enhanced User Experience:** Implements `loading.tsx`, `error.tsx`, and `not-found.tsx` for seamless loading states, error handling, and 404 pages.
 *   **📡 Seamless API Integration:** Integrates with external APIs using Route Handlers.
